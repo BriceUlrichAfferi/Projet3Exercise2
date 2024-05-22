@@ -1,5 +1,6 @@
 package com.openclassrooms.myrepo.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -7,14 +8,23 @@ import java.util.Objects;
  */
 public class Task {
     private String description;
+    private Date dueTime;
 
     /**
-     * Constructeur pour créer une nouvelle tâche avec une description.
-     *
+
+     * Constructeur pour créer une nouvelle tâche avec sa description et sa date d'échéance.
+
      * @param description La description de la tâche.
+
+     * @param dueTime La date d'échéance de la tâche.
+
      */
-    public Task(String description) {
+    public Task(String description, Date dueTime) {
+
         this.description = description;
+
+        this.dueTime = dueTime;
+
     }
 
     /**
@@ -25,6 +35,25 @@ public class Task {
     public String getDescription() {
         return description;
     }
+
+
+    /**
+
+     * Obtient la date d'échéance de la tâche.
+
+     * @return La date d'échéance de la tâche.
+
+     */
+    public Date getDueTime() {return dueTime;}
+
+    /**
+
+     * Définit la date d'échéance de la tâche.
+
+     * @param dueTime La nouvelle date d'échéance de la tâche.
+
+     */
+    public void setDueTime(Date dueTime) {this.dueTime = dueTime;}
 
     /**
      * Modifie la description de la tâche.
@@ -46,8 +75,10 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(description, task.description);
+        return Objects.equals(description, task.description) && Objects.equals(dueTime, task.dueTime);
     }
+
+
 
     /**
      * Calcule le code de hachage en utilisant la description de la tâche.
@@ -56,6 +87,6 @@ public class Task {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(description);
+        return Objects.hash(description, dueTime);
     }
 }
